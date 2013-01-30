@@ -91,24 +91,25 @@ class article_uploader_admin {
 			. __('The article uploader also works with plain text files. If you upload such a file, paragraphs will be added automatically and the rich text editor will remain turned on.', 'article-uploader')
 			. '</li>' . "\n";
 		
-		echo '<li>'
+/*		echo '<li>'
 			. __('Uploading an html file using the above form will force off WordPress\' rich text editor and content reformatting features on this entry. You can restore them later on.', 'article-uploader')
 			. '</li>' . "\n";
-		
+*/
 		echo '<li>'
 			. __('If you\'re not writing in English, make sure your document\'s character encoding matches that of your site (find it under <a href="options-general.php">Settings / General</a>). If it doesn\'t, you may end up with odd looking characters all over the place.', 'article-uploader')
 			. '</li>' . "\n";
 		
 		echo '</ul>' . "\n";
 	} # entry_editor()
-	
-	
-	/**
-	 * save_entry()
-	 *
-	 * @param int $post_ID
-	 * @return void
-	 **/
+
+
+    /**
+     * save_entry()
+     *
+     * @param $post_id
+     * @internal param int $post_ID
+     * @return void
+     */
 	
 	function save_entry($post_id) {
 		if ( !$_POST || wp_is_post_revision($post_id) || !current_user_can('unfiltered_html') )
@@ -150,7 +151,7 @@ class article_uploader_admin {
 					WHERE	ID = " . intval($post_id)
 					);
 				
-				update_post_meta($post_id, '_kill_formatting', '1');
+//				update_post_meta($post_id, '_kill_formatting', '1');
 			}
 			
 			break;
