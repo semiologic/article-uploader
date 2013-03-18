@@ -1,9 +1,9 @@
 === Article Uploader ===
-Contributors: Denis-de-Bernardy
+Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: semiologic
 Requires at least: 3.1
-Tested up to: 3.5
+Tested up to: 3.5.1
 Stable tag: trunk
 
 Lets you bypass WordPress' editor when it stops working as expected.
@@ -38,7 +38,7 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 = 2.1 =
 
 - WP 3.5 compat
-- Visual Editor is not forced off when uploading html file.  Let to user's choice now via checkbox
+- Visual Editor is not forced off when uploading html file.  Let the users choose now via checkbox
 
 = 2.0.2 =
 
