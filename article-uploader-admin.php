@@ -6,7 +6,15 @@
  **/
 
 class article_uploader_admin {
-	/**
+    /**
+     * article_uploader_admin()
+     */
+    function article_uploader_admin() {
+        add_filter('get_user_option_rich_editing', array($this, 'disable_tinymce'));
+        add_action('save_post', array($this, 'save_entry'));
+    } # article_uploader_admin()
+
+    /**
 	 * disable_tinymce()
 	 *
 	 * @param string $bool pseudo boolean
@@ -68,7 +76,7 @@ class article_uploader_admin {
 		echo '<ul class="ul-square">' . "\n";
 		
 		echo '<li>'
-			. sprintf(__('Maximum file size is %s based on your server\'s configuration.', 'article-uploader'), wp_convert_bytes_to_hr(apply_filters('import_upload_size_limit', wp_max_upload_size())))
+			. sprintf(__('Maximum file size is %s based on your server\'s configuration.', 'article-uploader'), size_format(apply_filters('import_upload_size_limit', wp_max_upload_size())))
 			. '</li>' . "\n";
 		
 		echo '<li>'
@@ -175,6 +183,5 @@ class article_uploader_admin {
 	} # save_entry()
 } # article_uploader_admin
 
-add_filter('get_user_option_rich_editing', array('article_uploader_admin', 'disable_tinymce'));
-add_action('save_post', array('article_uploader_admin', 'save_entry'));
+$article_uploader_admin = new article_uploader_admin();
 ?>

@@ -3,7 +3,7 @@ Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: semiologic
 Requires at least: 3.1
-Tested up to: 3.5.1
+Tested up to: 3.6
 Stable tag: trunk
 
 Lets you bypass WordPress' editor when it stops working as expected.
@@ -34,6 +34,12 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 2.2 =
+
+- WP 3.6 compat
+- PHP 5.4
+- Use size_format in place of wp_convert_bytes_to_hr
 
 = 2.1 =
 

@@ -3,7 +3,7 @@
 Plugin Name: Article Uploader
 Plugin URI: http://www.semiologic.com/software/article-uploader/
 Description: Lets you upload files in place of using the WP editor when writing your entries.
-Version: 2.1
+Version: 2.2
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: article-uploader
@@ -30,7 +30,19 @@ load_plugin_textdomain('article-uploader', false, dirname(plugin_basename(__FILE
  **/
 
 class article_uploader {
-	/**
+    /**
+     * article_uploader()
+     */
+    function article_uploader() {
+        if ( !is_admin() ) {
+        	add_action('the_post', array($this, 'the_post'));
+        	add_action('loop_end', array($this, 'loop_end'));
+        } else {
+        	add_action('admin_menu', array($this, 'meta_boxes'), 30);
+        }
+    } # article_uploader()
+
+    /**
 	 * meta_boxes()
 	 *
 	 * @return void
@@ -110,7 +122,7 @@ class article_uploader {
 	 * @return void
 	 **/
 
-	function restore_filters() {
+	static function restore_filters() {
 		global $article_uploader_filter_backup;
 		
 		foreach ( (array) $article_uploader_filter_backup as $filter => $filters )
@@ -136,10 +148,4 @@ foreach ( array('post.php', 'post-new.php', 'page.php', 'page-new.php') as $hook
 	add_action("load-$hook", 'load_multipart_entry');
 }
 
-if ( !is_admin() ) {
-	add_action('the_post', array('article_uploader', 'the_post'));
-	add_action('loop_end', array('article_uploader', 'loop_end'));
-} else {
-	add_action('admin_menu', array('article_uploader', 'meta_boxes'), 30);
-}
 ?>
