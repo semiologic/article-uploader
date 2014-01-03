@@ -1,9 +1,9 @@
 === Article Uploader ===
 Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
-Tags: semiologic
+Tags: semiologic, articles, upload, html import
 Requires at least: 3.1
-Tested up to: 3.6
+Tested up to: 3.8
 Stable tag: trunk
 
 Lets you bypass WordPress' editor when it stops working as expected.
@@ -34,6 +34,12 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 2.3 =
+
+- Article uploading is now working again.  Something broke along the way with WP 3.7 or 3.8.
+- Updated the instructions in the meta box including removing the language type setting link which has been removed from WP
+- WP 3.8 compat
 
 = 2.2 =
 

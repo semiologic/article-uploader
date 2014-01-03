@@ -9,9 +9,9 @@ class article_uploader_admin {
     /**
      * article_uploader_admin()
      */
-    function article_uploader_admin() {
+	public function __construct() {
         add_filter('get_user_option_rich_editing', array($this, 'disable_tinymce'));
-        add_action('save_post', array($this, 'save_entry'));
+        add_action('save_post', array($this, 'save_entry'), 10);
     } # article_uploader_admin()
 
     /**
@@ -65,7 +65,7 @@ class article_uploader_admin {
 			. '<input type="file" name="upload_article" tabindex="5" />'
 			. ' '
 			. '<input type="submit" name="save" class="button" tabindex="5"'
-			. ' value="' . __('Save', 'article-uploader') . '"'
+			. ' value="' . __('Upload', 'article-uploader') . '"'
 			. ' />'
 			. '</p>' . "\n";
 		
@@ -103,10 +103,6 @@ class article_uploader_admin {
 			. __('Uploading an html file using the above form will force off WordPress\' rich text editor and content reformatting features on this entry. You can restore them later on.', 'article-uploader')
 			. '</li>' . "\n";
 */
-		echo '<li>'
-			. __('If you\'re not writing in English, make sure your document\'s character encoding matches that of your site (find it under <a href="options-general.php">Settings / General</a>). If it doesn\'t, you may end up with odd looking characters all over the place.', 'article-uploader')
-			. '</li>' . "\n";
-		
 		echo '</ul>' . "\n";
 	} # entry_editor()
 
@@ -120,10 +116,15 @@ class article_uploader_admin {
      */
 	
 	function save_entry($post_id) {
-		if ( !$_POST || wp_is_post_revision($post_id) || !current_user_can('unfiltered_html') )
+		if ( wp_is_post_revision($post_id) || !current_user_can('unfiltered_html') )
 			return;
-		
-		global $wpdb;
+
+		$post_id = (int) $post_id;
+		$post = get_post($post_id);
+
+		if ( $post->post_status == 'trash' ) {
+			return;
+		}
 		
 		if ( !empty($_POST['kill_formatting']) )
 			update_post_meta($post_id, '_kill_formatting', '1');
@@ -151,7 +152,8 @@ class article_uploader_admin {
 			}
 			
 			$content = trim($content);
-			
+
+			global $wpdb;
 			if ( $content ) {
 				$wpdb->query("
 					UPDATE	$wpdb->posts
@@ -169,7 +171,8 @@ class article_uploader_admin {
 			$content = file_get_contents($_FILES['upload_article']['tmp_name']);
 			$content = trim($content);
 			$content = htmlspecialchars($content, ENT_COMPAT, get_option('blog_charset'));
-			
+
+			global $wpdb;
 			if ( $content ) {
 				$wpdb->query("
 					UPDATE	$wpdb->posts
@@ -184,4 +187,3 @@ class article_uploader_admin {
 } # article_uploader_admin
 
 $article_uploader_admin = new article_uploader_admin();
-?>

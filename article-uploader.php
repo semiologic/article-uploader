@@ -3,20 +3,19 @@
 Plugin Name: Article Uploader
 Plugin URI: http://www.semiologic.com/software/article-uploader/
 Description: Lets you upload files in place of using the WP editor when writing your entries.
-Version: 2.2
+Version: 2.3
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: article-uploader
 Domain Path: /lang
+License: Dual licensed under the MIT and GPLv2 licenses
 */
 
 /*
 Terms of use
 ------------
 
-This software is copyright Mesoconcepts (http://www.mesoconcepts.com), and is distributed under the terms of the Mesoconcepts license. In a nutshell, you may freely use it for any purpose, but may not redistribute it without written permission.
-
-http://www.mesoconcepts.com/license/
+This software is copyright Denis de Bernardy & Mike Koepke, and is distributed under the terms of the MIT and GPLv2 licenses.
 **/
 
 
@@ -33,7 +32,7 @@ class article_uploader {
     /**
      * article_uploader()
      */
-    function article_uploader() {
+	public function __construct() {
         if ( !is_admin() ) {
         	add_action('the_post', array($this, 'the_post'));
         	add_action('loop_end', array($this, 'loop_end'));
@@ -132,7 +131,6 @@ class article_uploader {
 	} # restore_filters()
 } # article_uploader
 
-
 if ( !function_exists('load_multipart_entry') ) :
 function load_multipart_entry() {
 	include_once dirname(__FILE__) . '/multipart-entry/multipart-entry.php';
@@ -148,4 +146,4 @@ foreach ( array('post.php', 'post-new.php', 'page.php', 'page-new.php') as $hook
 	add_action("load-$hook", 'load_multipart_entry');
 }
 
-?>
+$article_uploader = new article_uploader();
