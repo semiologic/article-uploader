@@ -3,7 +3,7 @@
 Plugin Name: Article Uploader
 Plugin URI: http://www.semiologic.com/software/article-uploader/
 Description: Lets you upload files in place of using the WP editor when writing your entries.
-Version: 2.3
+Version: 2.4 dev
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: article-uploader
@@ -19,8 +19,6 @@ This software is copyright Denis de Bernardy & Mike Koepke, and is distributed u
 **/
 
 
-load_plugin_textdomain('article-uploader', false, dirname(plugin_basename(__FILE__)) . '/lang');
-
 
 /**
  * article_uploader
@@ -29,17 +27,102 @@ load_plugin_textdomain('article-uploader', false, dirname(plugin_basename(__FILE
  **/
 
 class article_uploader {
-    /**
-     * article_uploader()
-     */
+	/**
+	 * Plugin instance.
+	 *
+	 * @see get_instance()
+	 * @type object
+	 */
+	protected static $instance = NULL;
+
+	/**
+	 * URL to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_url = '';
+
+	/**
+	 * Path to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_path = '';
+
+	/**
+	 * Access this plugin’s working instance
+	 *
+	 * @wp-hook plugins_loaded
+	 * @return  object of this class
+	 */
+	public static function get_instance()
+	{
+		NULL === self::$instance and self::$instance = new self;
+
+		return self::$instance;
+	}
+
+
+	/**
+	 * Loads translation file.
+	 *
+	 * Accessible to other classes to load different language files (admin and
+	 * front-end for example).
+	 *
+	 * @wp-hook init
+	 * @param   string $domain
+	 * @return  void
+	 */
+	public function load_language( $domain )
+	{
+		load_plugin_textdomain(
+			$domain,
+			FALSE,
+			$this->plugin_path . 'lang'
+		);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 *
+	 */
 	public function __construct() {
-        if ( !is_admin() ) {
-        	add_action('the_post', array($this, 'the_post'));
-        	add_action('loop_end', array($this, 'loop_end'));
-        } else {
-        	add_action('admin_menu', array($this, 'meta_boxes'), 30);
-        }
+		$this->plugin_url    = plugins_url( '/', __FILE__ );
+		$this->plugin_path   = plugin_dir_path( __FILE__ );
+		$this->load_language( 'article-uploader' );
+
+		add_action( 'plugins_loaded', array ( $this, 'init' ) );
     } # article_uploader()
+
+	/**
+	 * init()
+	 *
+	 * @return void
+	 **/
+
+	function init() {
+		// more stuff: register actions and filters
+		if ( !is_admin() ) {
+			add_action('the_post', array($this, 'the_post'));
+			add_action('loop_end', array($this, 'loop_end'));
+		} else {
+			add_action('admin_menu', array($this, 'meta_boxes'), 30);
+
+			foreach ( array('post.php', 'post-new.php', 'page.php', 'page-new.php') as $hook ) {
+				add_action("load-$hook", array($this, 'article_uploader_admin'));
+			}
+		}
+	}
+
+	/**
+	* article_uploader_admin()
+	*
+	* @return void
+	**/
+	function article_uploader_admin() {
+		include_once $this->plugin_path . '/article-uploader-admin.php';
+	}
 
     /**
 	 * meta_boxes()
@@ -114,36 +197,21 @@ class article_uploader {
 		}
 	} # strip_filters()
 	
-	
-	/**
-	 * restore_filters()
-	 *
-	 * @return void
-	 **/
 
-	static function restore_filters() {
-		global $article_uploader_filter_backup;
-		
-		foreach ( (array) $article_uploader_filter_backup as $filter => $filters )
-			foreach ( (array) $filters as $priority => $callbacks )
-				foreach ( (array) $callbacks as $callback )
-					add_filter($filter, $callback, $priority);
-	} # restore_filters()
+		/**
+		 * restore_filters()
+		 *
+		 * @return void
+		 **/
+
+		static function restore_filters() {
+			global $article_uploader_filter_backup;
+
+			foreach ( (array) $article_uploader_filter_backup as $filter => $filters )
+				foreach ( (array) $filters as $priority => $callbacks )
+					foreach ( (array) $callbacks as $callback )
+						add_filter($filter, $callback, $priority);
+		} # restore_filters()
 } # article_uploader
 
-if ( !function_exists('load_multipart_entry') ) :
-function load_multipart_entry() {
-	include_once dirname(__FILE__) . '/multipart-entry/multipart-entry.php';
-}
-endif;
-
-function article_uploader_admin() {
-	include_once dirname(__FILE__) . '/article-uploader-admin.php';
-}
-
-foreach ( array('post.php', 'post-new.php', 'page.php', 'page-new.php') as $hook ) {
-	add_action("load-$hook", 'article_uploader_admin');
-	add_action("load-$hook", 'load_multipart_entry');
-}
-
-$article_uploader = new article_uploader();
+$article_uploader = article_uploader::get_instance();

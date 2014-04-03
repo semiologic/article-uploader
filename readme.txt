@@ -35,6 +35,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 2.4 =
+
+- Code refactoring
+
 = 2.3 =
 
 - Article uploading is now working again.  Something broke along the way with WP 3.7 or 3.8.

@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * article_uploader_admin
  *
@@ -6,13 +8,67 @@
  **/
 
 class article_uploader_admin {
-    /**
-     * article_uploader_admin()
-     */
+	/**
+	 * Plugin instance.
+	 *
+	 * @see get_instance()
+	 * @type object
+	 */
+	protected static $instance = NULL;
+
+	/**
+	 * URL to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_url = '';
+
+	/**
+	 * Path to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_path = '';
+
+	/**
+	 * Access this plugin’s working instance
+	 *
+	 * @wp-hook plugins_loaded
+	 * @return  object of this class
+	 */
+	public static function get_instance()
+	{
+		NULL === self::$instance and self::$instance = new self;
+
+		return self::$instance;
+	}
+
+
+	/**
+	 * Constructor.
+	 *
+	 *
+	 */
+
 	public function __construct() {
-        add_filter('get_user_option_rich_editing', array($this, 'disable_tinymce'));
-        add_action('save_post', array($this, 'save_entry'), 10);
+		$this->plugin_url    = plugins_url( '/', __FILE__ );
+		$this->plugin_path   = plugin_dir_path( __FILE__ );
+
+		$this->init();
+
     } # article_uploader_admin()
+
+	/**
+	 * init()
+	 *
+	 * @return void
+	 **/
+
+	function init() {
+		// more stuff: register actions and filters
+		add_filter('get_user_option_rich_editing', array($this, 'disable_tinymce'));
+        add_action('save_post', array($this, 'save_entry'), 10);
+	}
 
     /**
 	 * disable_tinymce()
@@ -186,4 +242,4 @@ class article_uploader_admin {
 	} # save_entry()
 } # article_uploader_admin
 
-$article_uploader_admin = new article_uploader_admin();
+$article_uploader_admin = article_uploader_admin::get_instance();
