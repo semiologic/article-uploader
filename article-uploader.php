@@ -3,7 +3,7 @@
 Plugin Name: Article Uploader
 Plugin URI: http://www.semiologic.com/software/article-uploader/
 Description: Lets you upload files in place of using the WP editor when writing your entries.
-Version: 2.4 dev
+Version: 2.4
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: article-uploader
@@ -78,7 +78,7 @@ class article_uploader {
 		load_plugin_textdomain(
 			$domain,
 			FALSE,
-			$this->plugin_path . 'lang'
+			dirname(plugin_basename(__FILE__)) . '/lang'
 		);
 	}
 
@@ -111,6 +111,7 @@ class article_uploader {
 
 			foreach ( array('post.php', 'post-new.php', 'page.php', 'page-new.php') as $hook ) {
 				add_action("load-$hook", array($this, 'article_uploader_admin'));
+				add_action("load-$hook", 'load_multipart_entry');
 			}
 		}
 	}
@@ -215,3 +216,9 @@ class article_uploader {
 } # article_uploader
 
 $article_uploader = article_uploader::get_instance();
+
+if ( !function_exists('load_multipart_entry') ) :
+function load_multipart_entry() {
+	include_once dirname(__FILE__) . '/multipart-entry/multipart-entry.php';
+}
+endif;

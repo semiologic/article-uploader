@@ -1,60 +1,55 @@
-# Article Uploader pot file.
-# Copyright (C) 2009 Mesoconcepts <http://www.mesoconcepts.com>
+# Copyright (C) 2014 Article Uploader
 # This file is distributed under the same license as the Article Uploader package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 2.0\n"
-"Report-Msgid-Bugs-To: https://tickets.semiologic.com\n"
-"POT-Creation-Date: 2009-09-06 11:04+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Article Uploader 2.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/article-uploader\n"
+"POT-Creation-Date: 2014-04-23 00:52:49+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
-"Content-Transfer-Encoding: 8bit\n"
 
-#: article-uploader-admin.php:40
+#: article-uploader-admin.php:104
 msgid ""
 "The article uploader lets you bypass WordPress' editor when it stops working "
 "as expected -- which is frequent when you're pasting complicated copy, since "
 "WordPress destroys forms and scripts as it reformats html."
 msgstr ""
 
-#: article-uploader-admin.php:52
+#: article-uploader-admin.php:116
 msgid ""
 "Turn off WordPress's rich text editor and content reformatting features on "
 "this entry."
 msgstr ""
 
-#: article-uploader-admin.php:60
-msgid "Save"
+#: article-uploader-admin.php:124
+msgid "Upload"
 msgstr ""
 
-#: article-uploader-admin.php:65
+#: article-uploader-admin.php:129
 msgid "A few points to keep in mind when uploading an article:"
 msgstr ""
 
-#: article-uploader-admin.php:71
-#, php-format
+#: article-uploader-admin.php:135
 msgid "Maximum file size is %s based on your server's configuration."
 msgstr ""
 
-#: article-uploader-admin.php:75
+#: article-uploader-admin.php:139
 msgid ""
 "Everything within the &lt;body&gt; and &lt;/body&gt; tags of your uploaded "
 "file will <strong>replace</strong> the entry's contents."
 msgstr ""
 
-#: article-uploader-admin.php:79
+#: article-uploader-admin.php:143
 msgid ""
 "It will <strong><em>really</em></strong> replace the entry's contents. No "
 "kidding!"
 msgstr ""
 
-#: article-uploader-admin.php:83
+#: article-uploader-admin.php:147
 msgid ""
 "Your html is inserted <em>as is</em>, complete with any html error you may "
 "have left behind. If your site looks like a train wreck after you use the "
@@ -62,7 +57,7 @@ msgid ""
 "you're on your own to fix it."
 msgstr ""
 
-#: article-uploader-admin.php:87
+#: article-uploader-admin.php:151
 msgid ""
 "Expanding on this, and as a tip... Prefer Dreamweaver to FrontPage. If "
 "you're using the latter, consider checking your original document's syntax "
@@ -70,34 +65,36 @@ msgid ""
 "fails, have someone from a site like eLance fix the html code."
 msgstr ""
 
-#: article-uploader-admin.php:91
+#: article-uploader-admin.php:155
 msgid ""
 "The article uploader also works with plain text files. If you upload such a "
 "file, paragraphs will be added automatically and the rich text editor will "
 "remain turned on."
 msgstr ""
 
-#: article-uploader-admin.php:95
-msgid ""
-"Uploading an html file using the above form will force off WordPress' rich "
-"text editor and content reformatting features on this entry. You can restore "
-"them later on."
-msgstr ""
-
-#: article-uploader-admin.php:99
-msgid ""
-"If you're not writing in English, make sure your document's character "
-"encoding matches that of your site (find it under <a href=\"options-general."
-"php\">Settings / General</a>). If it doesn't, you may end up with odd "
-"looking characters all over the place."
-msgstr ""
-
-#: article-uploader-info.php:2 article-uploader.php:41 article-uploader.php:42
+#. #-#-#-#-#  article-uploader.pot (Article Uploader 2.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: article-uploader-info.php:2 article-uploader.php:136
+#: article-uploader.php:137
 msgid "Article Uploader"
 msgstr ""
 
+#. #-#-#-#-#  article-uploader.pot (Article Uploader 2.4)  #-#-#-#-#
+#. Description of the plugin/theme
 #: article-uploader-info.php:3
 msgid ""
 "Lets you upload files in place of using the WP editor when writing your "
 "entries."
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.semiologic.com/software/article-uploader/"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Denis de Bernardy & Mike Koepke"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.getsemiologic.com"
 msgstr ""
