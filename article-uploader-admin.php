@@ -97,7 +97,7 @@ class article_uploader_admin {
 	 * @return void
 	 **/
 	
-	function entry_editor($post) {
+	static function entry_editor($post) {
 		$post_ID = $post->ID;
 		
 		echo '<p>'

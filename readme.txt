@@ -3,7 +3,7 @@ Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: semiologic, articles, upload, html import
 Requires at least: 3.1
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: trunk
 
 Lets you bypass WordPress' editor when it stops working as expected.
@@ -34,6 +34,11 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 2.5 =
+
+- Fix static function php warning message
+- WP 4.0 compat
 
 = 2.4 =
 
