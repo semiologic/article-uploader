@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Article Uploader
-Plugin URI: http://www.semiologic.com/software/article-uploader/
-Description: Lets you upload files in place of using the WP editor when writing your entries.
-Version: 2.5
+Plugin URI: https://www.semiologic.com/software/article-uploader/
+Description: RETIRED - Lets you upload files in place of using the WP editor when writing your entries.
+Version: 2.5.1
 Author: Denis de Bernardy & Mike Koepke
-Author URI: http://www.getsemiologic.com
+Author URI: https://www.semiologic.com
 Text Domain: article-uploader
 Domain Path: /lang
 License: Dual licensed under the MIT and GPLv2 licenses
@@ -18,6 +18,9 @@ Terms of use
 This software is copyright Denis de Bernardy & Mike Koepke, and is distributed under the terms of the MIT and GPLv2 licenses.
 **/
 
+/*
+ * This plugin has been retired.  No further development will occur on it.
+ * */
 
 
 /**

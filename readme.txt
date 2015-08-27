@@ -1,10 +1,12 @@
 === Article Uploader ===
 Contributors: Denis-de-Bernardy, Mike_Koepke
-Donate link: http://www.semiologic.com/partners/
+Donate link: https://www.semiologic.com
 Tags: semiologic, articles, upload, html import
 Requires at least: 3.1
 Tested up to: 4.0
 Stable tag: trunk
+
+> *This plugin has been retired.  No further development will occur on it.*
 
 Lets you bypass WordPress' editor when it stops working as expected.
 
@@ -34,6 +36,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 
 == Change Log ==
+
+= 2.5.1 =
+
+- Development has ceased on this plugin.  Updated source and readme accordingly
 
 = 2.5 =
 
