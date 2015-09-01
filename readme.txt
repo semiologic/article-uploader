@@ -37,6 +37,10 @@ The [Semiologic forum](http://forum.semiologic.com) is the best place to report 
 
 == Change Log ==
 
+= 2.5.2 =
+
+- Add code to turn deactivate the plugin
+
 = 2.5.1 =
 
 - Development has ceased on this plugin.  Updated source and readme accordingly
