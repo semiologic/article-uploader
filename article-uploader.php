@@ -3,7 +3,7 @@
 Plugin Name: Article Uploader
 Plugin URI: https://www.semiologic.com/software/article-uploader/
 Description: RETIRED - Lets you upload files in place of using the WP editor when writing your entries.
-Version: 2.5.2
+Version: 2.5.3
 Author: Denis de Bernardy & Mike Koepke
 Author URI: https://www.semiologic.com
 Text Domain: article-uploader

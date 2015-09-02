@@ -6,12 +6,14 @@ Requires at least: 3.1
 Tested up to: 4.0
 Stable tag: trunk
 
-> *This plugin has been retired.  No further development will occur on it.*
 
 Lets you bypass WordPress' editor when it stops working as expected.
 
 
 == Description ==
+
+
+> *This plugin has been retired.  No further development will occur on it.*
 
 The Article Uploader plugin for WordPress lets you bypass WordPress' editor when it stops working as expected -- which is frequent when you're pasting complicated copy, since WordPress destroys forms and scripts as it reformats html.
 
